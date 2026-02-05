@@ -1,0 +1,80 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytest_cache/
+.hypothesis/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
+terraform.tfstate.backup
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Docker
+docker-compose.override.yml
+
+# Databricks
+.databricks/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# dbt
+/target/
+/dbt_packages/
+logs/
+
+# LocalStack
+.localstack/
