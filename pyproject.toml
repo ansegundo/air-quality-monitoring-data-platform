@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Air quality monitoring data platform with multi-cloud processing"
 authors = ["ansegundo <ansegundo@gmail.com>"]
 readme = "README.md"
-packages = [{include = "ingest"}, {include = "api"}]
+packages = [
+    {include = "ingest", from = "src"},
+    {include = "api", from = "src"}
+]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
@@ -56,13 +59,13 @@ ignore = ["E501"]
 quote-style = "double"
 
 [tool.pytest.ini_options]
-pythonpath = ["."]
 testpaths = ["tests"]
 addopts = "--verbose --tb=short"
 
 [tool.taskipy.tasks]
 lint = "ruff check ."
 format = "ruff format ."
+fix = "ruff check . --fix && ruff format ."
 check-types = "ruff check --select I001 ."
 test = "pytest tests/ -v --cov=src"
 test-ci = "pytest tests/ --cov=src --cov-report=xml"

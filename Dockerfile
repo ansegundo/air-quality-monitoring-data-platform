@@ -25,8 +25,8 @@ WORKDIR /opt/airflow
 COPY --from=builder --chown=airflow:root /home/airflow/.local /home/airflow/.local
 COPY --chown=airflow:root ./dags ./dags
 COPY --chown=airflow:root ./plugins ./plugins
-COPY --chown=airflow:root ./ingest ./ingest
-COPY --chown=airflow:root ./api ./api
+COPY --chown=airflow:root ./src/ingest ./ingest
+COPY --chown=airflow:root ./src/api ./api
 
 ENV PATH="/home/airflow/.local/bin:$PATH"
 
