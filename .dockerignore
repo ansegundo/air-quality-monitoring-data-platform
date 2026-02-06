@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+**/__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+**/venv
+ENV/
+env/
+.poetry/
+
+# Testing
+.pytest_cache
+**/.pytest_cache
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.tox/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Airflow
+logs/
+airflow.db
+airflow.cfg
+standalone_admin_password.txt
+webserver_config.py
+
+# Git
+.git/
+**/.git
+.gitignore
+.gitattributes
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.circleci/
+
+# Terraform
+terraform/
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+
+# Environment variables
+.env
+.env.*
+**/.env
+!.env.example
+
+# Dev tooling
+Makefile
+scripts/setup-dev-environment.sh
+.pre-commit-config.yaml
+
+# Misc
+*.log
+*.sql
+*.sqlite
+.cache/
+tmp/
+temp/
+node_modules/
+**/node_modules
+
+# Data files
+*.csv
+*.parquet
+*.json
+!pyproject.toml
+!poetry.lock

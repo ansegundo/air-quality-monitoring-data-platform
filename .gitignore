@@ -24,6 +24,9 @@ wheels/
 dmypy.json
 .pytest_cache/
 .hypothesis/
+.ruff_cache/
+.coverage
+htmlcov/
 
 # Virtual environments
 .env
