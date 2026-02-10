@@ -29,6 +29,3 @@ COPY --chown=airflow:root ./src/ingest ./ingest
 COPY --chown=airflow:root ./src/api ./api
 
 ENV PATH="/home/airflow/.local/bin:$PATH"
-
-HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
-    CMD curl --fail http://localhost:8080/health || exit 1
