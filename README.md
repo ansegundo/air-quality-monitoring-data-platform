@@ -20,46 +20,62 @@ Beyond technical demonstration, this project explores questions I've faced in pr
 
 ## Project Evolution
 
-- This project started as a local proof-of-concept but quickly evolvido into a cloud-native platform. The initial approach used SQLite and Python scripts, but doesn't really reflect the kind of systems I've been working with.
+- This project started as a local proof-of-concept and is being rebuilt as a production-style data platform. The initial approach used SQLite and Python scripts, but that did not reflect the reliability and operational patterns I wanted to practice.
 
+## Current Scope (Phase 1)
+
+This repository is currently focused on one golden pipeline path:
+
+- OpenAQ ingestion with Airflow orchestration
+- Contract-driven validation and normalization
+- Bronze/silver layers with idempotent reruns
+- Operational logging and basic quality checks
+
+This scope is intentional. The goal is to deliver one end-to-end path with reliable behavior before adding more platform surfaces.
 
 ## Architecture
 
-- The platform follows a modern data stack approach, using. managed services where appropriate while maintaining control over infrastructure through code.
+The platform follows a modern data stack approach, using managed services where appropriate while keeping infrastructure decisions explicit.
 
-The data flows from the OpenAQ API through an AWS Lambda function into an S3 raw layer. From there, it is processed in two parallel paths:
+### Phase 1 (Current)
 
-1. **Databricks path**: Using Delta Live Tables for transformation and Unity Catalog for governance.
-2. **AWS native path**: Using Athena with Iceberg tables and Glue Data Catalog.
+The current implementation centers on a single Airflow-driven ingestion path with a strict data contract, idempotent processing behavior, and local-first operability.
 
-The processed data is then served through a Data Products layer to downstream applications, including a FastAPI service, Metabase dashboards, and Databricks SQL.
+![Diagram with the project's architecture](docs/diagrams/architecture_phase_1.png)
+
+### Phase 2+ (Planned)
+
+After Phase 1 is stable, the project expands to:
+
+1. **Databricks path**: Delta processing and governance comparisons.
+2. **AWS native path**: Athena + Iceberg modeling and performance/cost analysis.
+3. **Serving layer expansion**: API and BI consumers backed by curated datasets.
 
 ![Diagram with the project's architecture](docs/diagrams/architecture.png)
 
 ## Why This Architecture?
 
-I chose a dual-path approach (Databricks + AWS native) for a few reasons.
+I chose a phased architecture because this is the most practical way to balance depth and breadth:
 
-The split between Databricks and AWS services reflects a common pattern I've seen: companies standardizing on Databricks for core data engineering while maintaining some AWS-native pipelines for specific use cases.
+- ship one reliable pipeline first (contract, reruns, observability),
+- then add comparative platform paths with measurable tradeoffs.
+
+The longer-term split between Databricks and AWS services reflects a common pattern I've seen in production: centralized platform standards with selective AWS-native workloads where that fit is better.
 
 ## Tech Stack
 
 ### Infrastructure & Orchestration
-- **Terraform**: For infrastructure as code to manage AWS and Databricks resources.
-- **AWS**: S3 for storage, Lambda for serverless ingestion, Glue for catalog, Athena for querying.
-- **Databricks**: For big data processing with Delta Lake and Unity Catalog.
-- **Airflow**: For workflow orchestration (chosen for its modern API and ease of use).
+- **Airflow**: Current orchestration backbone for the golden pipeline.
+- **Terraform**: Infrastructure as code baseline for reproducibility.
+- **AWS / Databricks**: Planned expansion for cross-platform benchmarking and governance patterns.
 
 ### Data Processing & Storage
-- **Apache Iceberg**: Used with Athena for open table format comparisons.
-- **Delta Lake**: Used in Databricks for transactionaEl data storage.
-- **dbt**: For SQL-based transformations (used with Athena and Databricks).
-- **Great Expectations**: For data quality testing.
+- **Contract-first ingestion**: Required fields, type normalization, and explicit invalid-record handling.
+- **Bronze/Silver design**: Raw traceability + normalized queryable layer with idempotent reruns.
+- **dbt / Iceberg / Delta**: Planned for later phases once the golden path is stable.
 
 ### Serving & Visualization
-- **Metabase**: Open-source BI tool for dashboards.
-- **FastAPI**: For building a REST API to serve data.
-- **Databricks SQL**: For ad-hoc analysis and reporting.
+- **FastAPI / Metabase / Databricks SQL**: Planned serving surfaces after core pipeline hardening.
 
 ## Getting Started
 ### 1. Create your local environment file
@@ -80,7 +96,10 @@ poetry run task airflow-local
 ```
 
 ## Documentation
-I'll update architecture decision records (ADRs) in the docs/ directory to explain key choices. These are written as if for a team, explaining the context, decision, and consequences.
+Architecture decisions are tracked in ADRs:
+
+- `docs/architecture/adr-001-scope-freeze-and-golden-path.md`
+- `docs/architecture/adr-002-golden-dag-contract-and-idempotency.md`
 
 ## Contributing
 This is a personal project but feedback is welcome
