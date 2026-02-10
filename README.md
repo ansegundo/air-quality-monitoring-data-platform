@@ -62,7 +62,22 @@ The split between Databricks and AWS services reflects a common pattern I've see
 - **Databricks SQL**: For ad-hoc analysis and reporting.
 
 ## Getting Started
-(WIP)
+### 1. Create your local environment file
+```bash
+cp .env.example .env
+```
+
+Update `.env` with non-default passwords before running Airflow locally.
+
+### 2. Initialize Airflow metadata DB and admin user
+```bash
+poetry run task init-airflow
+```
+
+### 3. Start local services
+```bash
+poetry run task airflow-local
+```
 
 ## Documentation
 I'll update architecture decision records (ADRs) in the docs/ directory to explain key choices. These are written as if for a team, explaining the context, decision, and consequences.
