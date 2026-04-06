@@ -100,6 +100,7 @@ Architecture decisions are tracked in ADRs:
 
 - `docs/architecture/adr-001-scope-freeze-and-golden-path.md`
 - `docs/architecture/adr-002-golden-dag-contract-and-idempotency.md`
+- `docs/architecture/adr-003-openaq-v3-hierarchical-ingestion-and-rate-limit-strategy.md`
 
 ## Contributing
 This is a personal project but feedback is welcome
