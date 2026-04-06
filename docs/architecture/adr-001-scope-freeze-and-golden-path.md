@@ -6,17 +6,17 @@
 
 ## Context
 
-The initial roadmap covered multiple platforms and delivery patterns at once:
+The initial roadmap tried to move several tracks at once:
 - AWS native lakehouse components
 - Databricks path
-- streaming simulation
-- orchestration, API, BI, and observability in parallel
+- Streaming simulation
+- Orchestration, API, BI, and observability in parallel
 
-For a single-owner project with an 8-week target, this scope increases delivery risk and typically leads to shallow implementation across many tools. The main risk is not technical feasibility; it is ending with partial systems that are hard to operate, test, and explain.
+For a single-owner project, that spread makes it too easy to end up with a little of everything and not enough of anything that is operationally solid. The risk is less about technical feasibility and more about ending with partial systems that are hard to run, test, and explain.
 
 ## Decision
 
-Prioritize one production-style vertical slice ("golden path") before adding secondary platform paths.
+Prioritize one end-to-end vertical slice (the "golden path") before adding secondary platform paths.
 
 Phase 1 (in scope):
 - one orchestration path (Airflow local-first)
@@ -40,13 +40,13 @@ Phase 2 (explicitly deferred):
 ## Consequences
 
 Positive:
-- higher probability of shipping a complete and reliable pipeline
-- clearer failure model and easier troubleshooting
-- stronger maintainability as the project expands
+- Higher probability of shipping a complete and reliable pipeline
+- Clearer failure model and easier troubleshooting
+- Stronger maintainability as the project expands
 
 Negative:
-- less short-term tool coverage
-- delayed cross-platform benchmark artifacts
+- Less short-term tool coverage
+- Delayed cross-platform benchmark artifacts
 
 ## Success Criteria
 
